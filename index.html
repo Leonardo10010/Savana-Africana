@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Savana Atelier — Moda Africana</title>
+<meta name="description" content="Conjuntos africanos masculinos bordados à mão. Túnica e calça em tecidos ricos, com a alma da África.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --earth:#2a1810;      /* terra escura */
+  --earth-2:#3b2216;
+  --clay:#b5502a;       /* terracota */
+  --clay-d:#8f3c1d;
+  --ochre:#d99a2b;      /* ocre / ouro kente */
+  --gold:#f0b940;
+  --forest:#1f4d3a;     /* verde kente */
+  --sand:#f4e7d0;
+  --cream:#fbf4e6;
+  --ink:#1c110b;
+  --muted:#6e5645;
+  --radius:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.6;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,.serif{font-family:'Fraunces',Georgia,serif;font-weight:600;line-height:1.05;letter-spacing:-.01em}
+.wrap{width:min(1200px,100% - 40px);margin-inline:auto}
+
+/* ---------- padrões africanos ---------- */
+/* faixa kente */
+.kente{height:14px;background:
+  repeating-linear-gradient(90deg,var(--gold) 0 28px,var(--forest) 28px 44px,var(--clay) 44px 72px,var(--earth) 72px 84px,var(--ochre) 84px 100px);
+  position:relative}
+.kente::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 10px,rgba(0,0,0,.18) 10px 12px)}
+.kente.thick{height:26px}
+/* bogolan (mud cloth) */
+.mud{background-color:var(--earth);
+  background-image:
+   radial-gradient(circle at 25% 25%,var(--sand) 0 3px,transparent 4px),
+   radial-gradient(circle at 75% 75%,var(--sand) 0 3px,transparent 4px),
+   linear-gradient(45deg,transparent 46%,rgba(244,231,208,.35) 47% 53%,transparent 54%),
+   linear-gradient(-45deg,transparent 46%,rgba(244,231,208,.35) 47% 53%,transparent 54%);
+  background-size:44px 44px}
+/* losangos */
+.diamonds{background-color:var(--clay);
+  background-image:
+   linear-gradient(135deg,var(--clay-d) 25%,transparent 25%),
+   linear-gradient(225deg,var(--clay-d) 25%,transparent 25%),
+   linear-gradient(45deg,var(--clay-d) 25%,transparent 25%),
+   linear-gradient(315deg,var(--clay-d) 25%,var(--clay) 25%);
+  background-size:40px 40px;background-position:20px 0,20px 0,0 0,0 0}
+
+/* ---------- header ---------- */
+header{position:sticky;top:0;z-index:50;background:rgba(42,24,16,.92);backdrop-filter:blur(10px);color:var(--sand)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:70px}
+.logo{display:flex;align-items:center;gap:12px;font-family:'Fraunces',serif;font-size:1.4rem;font-weight:800;letter-spacing:.02em}
+.logo svg{width:34px;height:34px}
+.logo small{display:block;font:300 .62rem 'Outfit';letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-top:-2px}
+nav ul{display:flex;gap:30px;list-style:none;font-size:.92rem;letter-spacing:.04em}
+nav a{position:relative;padding:4px 0}
+nav a::after{content:"";position:absolute;left:0;bottom:-2px;height:2px;width:0;background:var(--gold);transition:width .3s}
+nav a:hover::after{width:100%}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;border-radius:999px;font-weight:500;font-size:.95rem;letter-spacing:.03em;border:2px solid transparent;cursor:pointer;transition:transform .25s,background .25s,color .25s;font-family:inherit}
+.btn:hover{transform:translateY(-3px)}
+.btn-gold{background:var(--gold);color:var(--earth)}
+.btn-gold:hover{background:var(--ochre)}
+.btn-line{border-color:var(--sand);color:var(--sand)}
+.btn-line:hover{background:var(--sand);color:var(--earth)}
+.btn-dark{background:var(--earth);color:var(--sand)}
+.btn-dark:hover{background:var(--clay)}
+.menu-btn{display:none;background:none;border:0;color:var(--sand);cursor:pointer}
+
+/* ---------- hero ---------- */
+.hero{background:var(--earth);color:var(--sand);position:relative;overflow:hidden;padding:70px 0 0}
+.hero::before{content:"";position:absolute;inset:0;opacity:.07;background-image:
+  radial-gradient(circle at 25% 25%,#fff 0 3px,transparent 4px),radial-gradient(circle at 75% 75%,#fff 0 3px,transparent 4px),
+  linear-gradient(45deg,transparent 46%,#fff 47% 53%,transparent 54%),linear-gradient(-45deg,transparent 46%,#fff 47% 53%,transparent 54%);
+  background-size:56px 56px}
+.sun{position:absolute;right:-180px;top:-180px;width:640px;height:640px;border-radius:50%;
+  background:radial-gradient(circle,var(--gold) 0 30%,var(--ochre) 31% 48%,var(--clay) 49% 66%,transparent 67%);opacity:.9;filter:saturate(1.05)}
+.hero-grid{position:relative;display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:end}
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:.78rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:22px}
+.eyebrow::before{content:"";width:46px;height:3px;background:repeating-linear-gradient(90deg,var(--gold) 0 10px,var(--clay) 10px 16px)}
+.hero h1{font-size:clamp(3rem,7.2vw,6.2rem);font-weight:800}
+.hero h1 em{font-style:italic;font-weight:400;color:var(--gold)}
+.hero p.lead{max-width:480px;margin:26px 0 34px;font-size:1.12rem;color:#e6d4b8;font-weight:300}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;padding-bottom:70px}
+.hero-stats{display:flex;gap:40px;padding-bottom:60px;font-size:.85rem;color:#cdb892}
+.hero-stats b{display:block;font:800 2rem 'Fraunces';color:var(--gold)}
+.hero-art{position:relative;height:640px;align-self:end}
+.arch{position:absolute;overflow:hidden;border:6px solid var(--gold);background:var(--earth-2)}
+.arch img{width:100%;height:100%;object-fit:cover;object-position:top}
+.arch.a1{width:320px;height:540px;right:60px;bottom:0;border-radius:200px 200px 0 0;z-index:2}
+.arch.a2{width:210px;height:360px;left:0;bottom:0;border-radius:140px 140px 0 0;border-color:var(--clay);z-index:1}
+.arch.a3{width:170px;height:290px;right:0;bottom:0;border-radius:110px 110px 0 0;border-color:var(--forest);z-index:1;transform:translateX(30px)}
+.badge{position:absolute;z-index:3;left:90px;top:40px;width:130px;height:130px;border-radius:50%;background:var(--gold);color:var(--earth);display:grid;place-items:center;text-align:center;font:800 .8rem 'Fraunces';line-height:1.1;animation:spin 22s linear infinite}
+.badge span{animation:spin 22s linear infinite reverse;display:block;padding:10px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* marquee */
+.marquee{background:var(--clay);color:var(--cream);overflow:hidden;white-space:nowrap;padding:16px 0;border-block:3px solid var(--earth)}
+.marquee-track{display:inline-flex;gap:46px;animation:slide 32s linear infinite;font:600 1.25rem 'Fraunces';letter-spacing:.04em}
+.marquee-track i{color:var(--gold);font-style:normal}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* ---------- seções ---------- */
+section{padding:100px 0}
+.sec-head{text-align:center;max-width:680px;margin:0 auto 50px}
+.sec-head .eyebrow{color:var(--clay);justify-content:center}
+.sec-head .eyebrow::before{background:repeating-linear-gradient(90deg,var(--clay) 0 10px,var(--gold) 10px 16px)}
+.sec-head h2{font-size:clamp(2.2rem,4.6vw,3.6rem)}
+.sec-head p{margin-top:16px;color:var(--muted)}
+
+/* filtros */
+.filters{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:46px}
+.chip{display:inline-flex;align-items:center;gap:9px;padding:11px 22px;border-radius:999px;border:2px solid var(--earth);background:transparent;font:500 .9rem 'Outfit';cursor:pointer;transition:.25s;color:var(--earth)}
+.chip i{width:12px;height:12px;border-radius:50%;border:1px solid rgba(0,0,0,.25)}
+.chip:hover{background:var(--sand)}
+.chip.on{background:var(--earth);color:var(--gold)}
+
+/* grid de produtos */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
+.card{position:relative;background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:0 10px 30px -14px rgba(42,24,16,.35);transition:transform .35s,box-shadow .35s;display:flex;flex-direction:column;animation:pop .5s both}
+@keyframes pop{from{opacity:0;transform:translateY(18px)}}
+.card:hover{transform:translateY(-8px);box-shadow:0 26px 40px -18px rgba(42,24,16,.5)}
+.card .ph{position:relative;aspect-ratio:3/4;overflow:hidden;cursor:zoom-in;background:var(--sand)}
+.card .ph img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .7s}
+.card:hover .ph img{transform:scale(1.07)}
+.card .ph::after{content:"";position:absolute;left:0;right:0;bottom:0;height:8px;background:repeating-linear-gradient(90deg,var(--gold) 0 18px,var(--forest) 18px 28px,var(--clay) 28px 46px,var(--earth) 46px 54px)}
+.tag{position:absolute;top:12px;left:12px;z-index:2;background:var(--earth);color:var(--gold);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;padding:5px 12px;border-radius:999px}
+.zoom{position:absolute;top:12px;right:12px;z-index:2;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.9);display:grid;place-items:center;opacity:0;transition:.3s}
+.card:hover .zoom{opacity:1}
+.info{padding:18px 20px 20px;display:flex;flex-direction:column;gap:6px;flex:1}
+.info h3{font-size:1.3rem}
+.info .sub{font-size:.85rem;color:var(--muted)}
+.price{font:600 .95rem 'Outfit';color:var(--clay);letter-spacing:.04em;margin-top:2px}
+.order{margin-top:auto;padding-top:12px}
+.order a{display:flex;justify-content:center;align-items:center;gap:8px;padding:11px;border-radius:12px;background:var(--earth);color:var(--sand);font-size:.88rem;font-weight:500;transition:.25s}
+.order a:hover{background:var(--forest)}
+
+/* sobre */
+.about{background:var(--earth);color:var(--sand);position:relative}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.about-img{position:relative;aspect-ratio:4/5;max-width:480px}
+.about-img .frame{position:absolute;inset:0;border:5px solid var(--gold);border-radius:240px 240px 20px 20px;overflow:hidden;z-index:2;background:var(--earth-2)}
+.about-img .frame img{width:100%;height:100%;object-fit:cover;object-position:top}
+.about-img .shadow{position:absolute;inset:26px -26px -26px 26px;border-radius:240px 240px 20px 20px}
+.about h2{font-size:clamp(2.2rem,4.4vw,3.4rem);margin-bottom:22px}
+.about h2 em{color:var(--gold);font-weight:400}
+.about p{color:#e0cdae;font-weight:300;margin-bottom:16px}
+.values{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px}
+.val{padding:20px 16px;border:1px solid rgba(240,185,64,.35);border-radius:14px}
+.val svg{width:34px;height:34px;color:var(--gold);margin-bottom:10px}
+.val b{display:block;font:600 1.05rem 'Fraunces'}
+.val span{font-size:.82rem;color:#c9b48f}
+
+/* como pedir */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;counter-reset:s}
+.step{position:relative;background:var(--sand);padding:56px 24px 28px;border-radius:var(--radius);counter-increment:s}
+.step::before{content:counter(s);position:absolute;top:-24px;left:24px;width:52px;height:52px;border-radius:50%;background:var(--clay);color:var(--cream);display:grid;place-items:center;font:800 1.5rem 'Fraunces';border:4px solid var(--cream)}
+.step h3{font-size:1.25rem;margin-bottom:8px}
+.step p{font-size:.92rem;color:var(--muted)}
+
+/* CTA */
+.cta{background:var(--clay);color:var(--cream);text-align:center;position:relative;overflow:hidden}
+.cta .diamonds{position:absolute;inset:0;opacity:.35}
+.cta .wrap{position:relative}
+.cta h2{font-size:clamp(2.2rem,5vw,4rem);margin-bottom:18px}
+.cta p{max-width:520px;margin:0 auto 30px;font-weight:300;font-size:1.1rem}
+
+footer{background:var(--earth);color:#cdb892;padding:60px 0 28px}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;margin-bottom:40px}
+footer h4{font:600 1.1rem 'Fraunces';color:var(--gold);margin-bottom:14px}
+footer li{list-style:none;margin-bottom:8px;font-size:.92rem}
+footer a:hover{color:var(--gold)}
+.copy{border-top:1px solid rgba(240,185,64,.25);padding-top:22px;font-size:.82rem;text-align:center}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:100;background:rgba(20,10,5,.94);display:none;align-items:center;justify-content:center;padding:20px}
+.lb.on{display:flex}
+.lb-box{display:grid;grid-template-columns:auto 340px;gap:30px;max-height:92vh;align-items:center}
+.lb img{max-height:88vh;max-width:min(60vw,640px);border-radius:14px;border:4px solid var(--gold);object-fit:contain}
+.lb-info{color:var(--sand)}
+.lb-info h3{font-size:2rem;margin-bottom:6px}
+.lb-info p{color:#cdb892;margin-bottom:22px}
+.lb-x,.lb-n{position:absolute;background:rgba(240,185,64,.18);border:0;color:var(--gold);width:48px;height:48px;border-radius:50%;cursor:pointer;font-size:1.5rem;display:grid;place-items:center}
+.lb-x{top:20px;right:20px}.lb-p{left:20px;top:50%}.lb-nx{right:20px;top:50%}
+.lb-x:hover,.lb-n:hover{background:var(--gold);color:var(--earth)}
+
+.reveal{opacity:0;transform:translateY(30px);transition:1s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:1000px){
+  .grid{grid-template-columns:repeat(3,1fr)}
+  .hero-grid,.about-grid{grid-template-columns:1fr}
+  .hero-art{height:520px;max-width:520px;margin-inline:auto;width:100%}
+  .steps{grid-template-columns:repeat(2,1fr);gap:40px 22px}
+  .about-img{margin-inline:auto}
+}
+@media(max-width:720px){
+  nav{position:fixed;inset:70px 0 auto 0;background:var(--earth);padding:20px;display:none;border-bottom:4px solid var(--gold)}
+  nav.open{display:block}
+  nav ul{flex-direction:column;gap:18px}
+  .menu-btn{display:block}
+  .nav>.btn{display:none}
+  section{padding:70px 0}
+  .grid{grid-template-columns:repeat(2,1fr);gap:14px}
+  .info{padding:12px 12px 14px}.info h3{font-size:1.05rem}.info .sub{display:none}
+  .hero{padding-top:44px}.sun{width:380px;height:380px;right:-140px;top:-120px}
+  .hero-art{height:430px}
+  .arch.a1{width:230px;height:380px;right:40px}
+  .arch.a2{width:150px;height:260px}
+  .arch.a3{display:none}
+  .badge{width:100px;height:100px;font-size:.66rem;left:20px;top:20px}
+  .hero-stats{gap:24px}
+  .values{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .foot{grid-template-columns:1fr}
+  .lb-box{grid-template-columns:1fr;gap:12px;overflow:auto}
+  .lb img{max-height:62vh;max-width:90vw;margin-inline:auto}
+  .lb-info h3{font-size:1.4rem}.lb-info p{margin-bottom:12px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#inicio" class="logo" aria-label="Savana Atelier">
+      <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="19" stroke="#f0b940" stroke-width="2"/><path d="M20 5l9 15-9 15-9-15z" fill="#b5502a"/><path d="M20 12l5 8-5 8-5-8z" fill="#f0b940"/><circle cx="20" cy="20" r="2.2" fill="#2a1810"/></svg>
+      <span>Savana Atelier<small>Moda Africana</small></span>
+    </a>
+    <nav id="nav">
+      <ul>
+        <li><a href="#colecao">Coleção</a></li>
+        <li><a href="#historia">Nossa História</a></li>
+        <li><a href="#pedir">Como Pedir</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-gold" data-wa="Olá! Quero saber mais sobre a coleção." href="#">Fale connosco</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+  </div>
+  <div class="kente"></div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="inicio" style="padding-bottom:0">
+  <div class="sun"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Coleção Masculina · Bordado à mão</div>
+      <h1>Vista a <em>alma</em> de África</h1>
+      <p class="lead">Conjuntos de túnica e calça em tecidos ricos e bordados cheios de história. Cada peça carrega a cor, o ritmo e o orgulho de um continente.</p>
+      <div class="hero-cta">
+        <a href="#colecao" class="btn btn-gold">Ver a coleção
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="#" data-wa="Olá! Gostaria de fazer um pedido." class="btn btn-line">Pedir no WhatsApp</a>
+      </div>
+      <div class="hero-stats">
+        <div><b>34+</b>modelos únicos</div>
+        <div><b>100%</b>bordado cuidadoso</div>
+        <div><b>5</b>paletas de cor</div>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="badge"><span>FEITO<br>COM<br>ORGULHO</span></div>
+      <div class="arch a2"><img src="img/p05.jpg" alt="Conjunto azul bordado"></div>
+      <div class="arch a1"><img src="img/p34.jpg" alt="Conjunto bordô bordado"></div>
+      <div class="arch a3"><img src="img/p02.jpg" alt="Conjunto creme dourado"></div>
+    </div>
+  </div>
+  <div class="kente thick" style="margin-top:0"></div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="mq"></div>
+</div>
+
+<!-- COLEÇÃO -->
+<section id="colecao">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Nossa Coleção</div>
+      <h2>Conjuntos que contam histórias</h2>
+      <p>Escolha a sua cor, toque na foto para ampliar e peça diretamente pelo WhatsApp.</p>
+    </div>
+    <div class="filters reveal" id="filters"></div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<div class="kente"></div>
+
+<!-- HISTÓRIA -->
+<section class="about" id="historia">
+  <div class="wrap about-grid">
+    <div class="about-img reveal">
+      <div class="shadow diamonds"></div>
+      <div class="frame"><img src="img/p12.jpg" alt="Conjunto bordado dourado" loading="lazy"></div>
+    </div>
+    <div class="reveal">
+      <div class="eyebrow">Nossa História</div>
+      <h2>Tradição <em>tecida</em> em cada fio</h2>
+      <p>A moda africana é uma linguagem. Cada bordado, cada recorte e cada cor revelam identidade, celebração e pertença. Na Savana Atelier trazemos essa herança para o seu guarda-roupa, com peças confortáveis, elegantes e feitas para marcar presença.</p>
+      <p>Dos casamentos às cerimónias, do dia a dia ao orgulho de ser quem se é: aqui há um conjunto para cada momento.</p>
+      <div class="values">
+        <div class="val"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/></svg><b>Bordado fino</b><span>Detalhes feitos com cuidado</span></div>
+        <div class="val"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg><b>Cores vivas</b><span>Da savana ao oceano</span></div>
+        <div class="val"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v8H4v-8M2 7h20v5H2zM12 22V7M12 7S9 7 8 5s1-3 3-2 1 4 1 4zM12 7s3 0 4-2-1-3-3-2-1 4-1 4z"/></svg><b>Pronto a vestir</b><span>Túnica + calça</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO PEDIR -->
+<section id="pedir">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Simples e rápido</div>
+      <h2>Como fazer o seu pedido</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><h3>Escolha</h3><p>Navegue pela coleção e filtre pela cor que mais combina consigo.</p></div>
+      <div class="step reveal"><h3>Clique em Pedir</h3><p>O botão abre o WhatsApp já com o modelo selecionado.</p></div>
+      <div class="step reveal"><h3>Confirme o tamanho</h3><p>Combinamos medidas, preço e disponibilidade consigo.</p></div>
+      <div class="step reveal"><h3>Receba</h3><p>Entregamos ou combinamos a recolha. É só vestir e brilhar.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contacto">
+  <div class="diamonds"></div>
+  <div class="wrap reveal">
+    <h2>Pronto para brilhar?</h2>
+    <p>Fale connosco agora e encontre o conjunto perfeito para a sua próxima ocasião.</p>
+    <a class="btn btn-dark" data-wa="Olá! Quero encomendar um conjunto africano." href="#">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm5.2 14c-.2.6-1.300 1.200-1.800 1.200-.5.1-1 .2-3.300-.7-2.800-1.200-4.600-4-4.700-4.200-.1-.2-1.100-1.500-1.100-2.800s.7-2 1-2.300c.2-.3.500-.3.700-.3h.5c.2 0 .4 0 .6.500l.8 2c.1.200.1.300 0 .5l-.4.600c-.1.100-.3.300-.1.600.2.300.8 1.300 1.700 2.100 1.200 1 2.100 1.300 2.400 1.500.3.100.5.100.6-.1l.9-1.100c.2-.3.400-.2.600-.1l1.900.9c.3.100.5.200.5.300.1.200.1.800-.1 1.400z"/></svg>
+      Conversar no WhatsApp</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a href="#inicio" class="logo" style="color:var(--sand);margin-bottom:14px"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="19" stroke="#f0b940" stroke-width="2"/><path d="M20 5l9 15-9 15-9-15z" fill="#b5502a"/><path d="M20 12l5 8-5 8-5-8z" fill="#f0b940"/><circle cx="20" cy="20" r="2.2" fill="#2a1810"/></svg><span>Savana Atelier<small>Moda Africana</small></span></a>
+        <p style="max-width:320px;font-size:.92rem">Moda africana masculina com orgulho, cor e tradição.</p>
+      </div>
+      <div><h4>Explorar</h4><ul><li><a href="#colecao">Coleção</a></li><li><a href="#historia">Nossa História</a></li><li><a href="#pedir">Como Pedir</a></li></ul></div>
+      <div><h4>Contacto</h4><ul><li><a href="#" data-wa="Olá!">WhatsApp</a></li><li>Seu endereço aqui</li><li>seuemail@exemplo.com</li></ul></div>
+    </div>
+    <div class="copy">© <span id="yr"></span> Savana Atelier · Todos os direitos reservados</div>
+  </div>
+  <div class="kente" style="margin-top:28px"></div>
+</footer>
+
+<!-- Lightbox -->
+<div class="lb" id="lb" role="dialog" aria-modal="true">
+  <button class="lb-x" id="lbx" aria-label="Fechar">×</button>
+  <button class="lb-n lb-p" id="lbp" aria-label="Anterior">‹</button>
+  <button class="lb-n lb-nx" id="lbn" aria-label="Seguinte">›</button>
+  <div class="lb-box">
+    <img id="lbi" alt="">
+    <div class="lb-info">
+      <div class="eyebrow" id="lbt" style="margin-bottom:12px"></div>
+      <h3 id="lbh"></h3>
+      <p>Conjunto de túnica e calça, bordado. Preço sob consulta.</p>
+      <a class="btn btn-gold" id="lbw" href="#" target="_blank" rel="noopener">Pedir este modelo</a>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ====== CONFIGURAÇÃO (adapte aqui) ====== */
+const WHATSAPP = "258000000000";   // número com indicativo, sem + nem espaços
+const BRAND = "Savana Atelier";
+/* Para colocar preço depois: preencha o campo "preco" de um produto, ex: preco:"2.500 MT" */
+
+const CATS = {
+  todos:{n:"Todos",c:"conic-gradient(#b5502a,#d99a2b,#1f4d3a,#3d9bb5,#b5502a)"},
+  azul:{n:"Azul",c:"#3d9bb5"},
+  creme:{n:"Creme & Marfim",c:"#efe3b8"},
+  terra:{n:"Terra & Ouro",c:"#a8682c"},
+  vivo:{n:"Vivos",c:"#2f9a54"}
+};
+const map = {
+  azul:[3,5,11,21,24,27],
+  creme:[1,2,4,6,7,8,9,10,15,18,19,25,31],
+  terra:[12,13,14,16,17,22,23,32],
+  vivo:[20,26,28,29,30,33,34]
+};
+const NOMES = ["Amara","Kofi","Zola","Jabari","Nia","Kwame","Imani","Sekou","Adaeze","Tariq","Zuri","Bakari","Ayo","Kito","Lumo","Makena","Oba","Sade","Tendai","Uzoma","Wole","Yaw","Zende","Abeo","Chike","Dayo","Eshe","Femi","Gamba","Haji","Idris","Jengo","Kamau","Mosi"];
+const catOf = n => Object.keys(map).find(k=>map[k].includes(n));
+const products = Array.from({length:34},(_,i)=>{
+  const n=i+1;
+  return {id:n,img:`img/p${String(n).padStart(2,'0')}.jpg`,nome:`Conjunto ${NOMES[i]}`,cat:catOf(n),preco:""};
+});
+
+const waLink = msg => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+document.querySelectorAll('[data-wa]').forEach(a=>{a.href=waLink(a.dataset.wa);a.target="_blank";a.rel="noopener"});
+document.getElementById('yr').textContent=new Date().getFullYear();
+
+/* marquee */
+const words=["Bordado à mão","Cores da savana","Túnica & Calça","Orgulho africano","Tradição viva","Elegância e raízes"];
+document.getElementById('mq').innerHTML=[...words,...words,...words,...words].map(w=>`<span>${w}</span><i>◆</i>`).join('');
+
+/* filtros */
+const fEl=document.getElementById('filters'),gEl=document.getElementById('grid');
+let cur="todos",list=products;
+fEl.innerHTML=Object.entries(CATS).map(([k,v])=>`<button class="chip ${k==='todos'?'on':''}" data-k="${k}"><i style="background:${v.c}"></i>${v.n}</button>`).join('');
+fEl.addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;cur=b.dataset.k;
+  fEl.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c===b));render()});
+
+const eye=`<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2a1810" stroke-width="2" stroke-linecap="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>`;
+const wa=`<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2z"/></svg>`;
+function render(){
+  list=products.filter(p=>cur==='todos'||p.cat===cur);
+  gEl.innerHTML=list.map((p,i)=>`
+   <article class="card" style="animation-delay:${Math.min(i,12)*40}ms">
+     <div class="ph" data-i="${i}"><span class="tag">Nº ${String(p.id).padStart(2,'0')}</span><span class="zoom">${eye}</span>
+       <img src="${p.img}" alt="${p.nome}" loading="lazy"></div>
+     <div class="info"><h3>${p.nome}</h3><div class="sub">${CATS[p.cat].n} · Túnica + calça</div>
+       <div class="price">${p.preco||'Preço sob consulta'}</div>
+       <div class="order"><a target="_blank" rel="noopener" href="${waLink(`Olá! Tenho interesse no ${p.nome} (Nº ${p.id}) da ${BRAND}.`)}">${wa} Pedir no WhatsApp</a></div></div>
+   </article>`).join('');
+}
+render();
+
+/* lightbox */
+const lb=document.getElementById('lb');let li=0;
+function show(i){li=(i+list.length)%list.length;const p=list[li];
+  document.getElementById('lbi').src=p.img;document.getElementById('lbi').alt=p.nome;
+  document.getElementById('lbh').textContent=p.nome;
+  document.getElementById('lbt').textContent=`Nº ${String(p.id).padStart(2,'0')} · ${CATS[p.cat].n}`;
+  document.getElementById('lbw').href=waLink(`Olá! Tenho interesse no ${p.nome} (Nº ${p.id}) da ${BRAND}.`)}
+gEl.addEventListener('click',e=>{const ph=e.target.closest('.ph');if(!ph)return;show(+ph.dataset.i);lb.classList.add('on');document.body.style.overflow='hidden'});
+const close=()=>{lb.classList.remove('on');document.body.style.overflow=''};
+document.getElementById('lbx').onclick=close;
+document.getElementById('lbp').onclick=()=>show(li-1);
+document.getElementById('lbn').onclick=()=>show(li+1);
+lb.addEventListener('click',e=>{if(e.target===lb)close()});
+addEventListener('keydown',e=>{if(!lb.classList.contains('on'))return;
+  if(e.key==='Escape')close();if(e.key==='ArrowLeft')show(li-1);if(e.key==='ArrowRight')show(li+1)});
+
+/* menu mobile */
+const nav=document.getElementById('nav');
+document.getElementById('menuBtn').onclick=()=>nav.classList.toggle('open');
+nav.addEventListener('click',e=>{if(e.target.tagName==='A')nav.classList.remove('open')});
+
+/* reveal */
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
